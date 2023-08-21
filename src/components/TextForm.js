@@ -14,25 +14,49 @@ const handleLoClick = ()=>{
   let newText = text.toLowerCase();
   setText(newText)
 }
+
+const handleCopyClick = ()=>{
+  let text = document.getElementById("myBox")
+  text.select()
+  navigator.clipboard.writeText(text.value)
+}
+const handleClearText = ()=>{
+  let newText = ""
+  setText(newText)
+}
+const handleExtraSpaces= ()=> {
+  let newText = text.split(/[ ]+/)
+  setText(newText.join(" "))
+}
   
-const[text, setText]= useState("enter your text here")
+const[text, setText]= useState("")
   return(
-    
-<div>
+ 
+<div class="container" style={{color:props.mode==="dark"?"white":"black"}}>
 <h1>{props.heading}</h1>
   <div className="mb-3">
     <textarea className="form-control" value = {text} onChange = 
-    {handleOnChange} id="myBox" rows="8"></textarea> </div>
+    {handleOnChange} style={{backgroundColor:props.mode==="dark"?"grey":"white", color:props.mode==="dark"?"white":"black"}} id="myBox" rows="8"></textarea> </div>
 
-    <button className= "btn btn-primary" onClick =       
+<button className= "btn btn-primary" onClick =       
            {handleOnClick}>Convert to uppercase</button>
-<button className= "btn btn-primary mx-3"  onClick =       
+<button className= "btn btn-primary mx-1"  onClick =       
            {handleLoClick}>Convert to lowercase</button>
+<button className= "btn btn-primary mx-1"  onClick =       
+           {handleCopyClick}>Copy to clipboard</button>
+<button className= "btn btn-primary mx-1"  onClick =  
+           {handleClearText}>Clear Text</button>
+<button className= "btn btn-primary mx-1"  onClick =  
+           {handleExtraSpaces}>Remove Extra Spaces</button>
+
+    
     <div>
-      <p> {text.split(" ").length}words and {text.length} characters</p>
+      <p> {text.split(" ").filter(x => x!=="").length}words and {text.length} characters</p>
       <p>{0.008*text.length} Minutes to read</p>
     </div>
+
 </div>
+
   )
 }
 
