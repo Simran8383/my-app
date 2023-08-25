@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import './App.css'
 import Navbar from './components/Navbar';
-import TextForm from './components/TextForm';
+// import TextForm from './components/TextForm';
+import About from './components/About';
+
 
 
  function App() {
@@ -24,7 +26,8 @@ import TextForm from './components/TextForm';
     <Navbar title="textUtils"  mode={mode} toggle={toggleFunction}/> 
     {/* so here mode is taking an object as input value */}
     <div className = "container">
-    <TextForm heading="Enter text to analyze" mode={mode}/>
+    {/* <TextForm heading="Enter text to analyze" mode={mode}/> */}
+    <About/>
     </div>
       
     </>
